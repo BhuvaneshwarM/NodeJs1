@@ -1,0 +1,15 @@
+{
+  "name": "bhuvan",
+  "version": "1.0.0",
+  "description": "This contains the modules information of this application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "buvaneshwar",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "modules": "^0.4.0"
+  }
+}

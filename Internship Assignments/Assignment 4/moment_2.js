@@ -5,6 +5,11 @@ input date is near to which date
 of the system defined range and the difference between those date(s) in ms.*/
 
 var moment=require('moment');
+
+var Ajv=require('ajv');
+var ajv=new Ajv();
+const utf8 = require('utf8');
+
 var stdin=process.openStdin();
 var start="2018-10-10";   //Starting date of the range 
 var end="2018-10-15";     //ending date of the range
@@ -13,7 +18,18 @@ var endDate=moment(end,"YYYY-MM-DD").valueOf();       //end date to ms
 
 console.log("enter the date in YYYY-MM-DD format");
 stdin.addListener("data",function(d)           //input 
-{
+{   const schema={"type":"string",pattern:"Invalid date"}
+    d1 = d;
+    var d1=moment(d1,"YYYY-MM-DD")
+    d1=d1.toString();
+    var invalid=ajv.validate(schema,d1)
+    
+    if(invalid){ 
+        console.log("error!! The entered date is invalid")
+        process.stdin.destroy();
+    }
+    else
+    {
     var date=moment(d,"YYYY-MM-DD").valueOf();    //input date to ms
     var result={}   //Object declaration
     if(date>=startDate && date<=endDate)   //range checking 
@@ -32,7 +48,11 @@ stdin.addListener("data",function(d)           //input
         result.nearDate=start;
         result.difference=Math.abs(startDate-date);
     }
- 
+     
+
     console.log(result);  //result 
     process.stdin.destroy();
-});
+}
+}
+
+);

@@ -15,6 +15,7 @@ function type(var1,callf) //function is passes as parameter callf
 		callf(null,'the type of variable is '+typeof(var1));//the type of the variable a is printed
 	}
 }
+var a=5;
 type(a,function(error,result){ 
 if(error)
 {

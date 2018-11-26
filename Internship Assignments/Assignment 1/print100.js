@@ -1,16 +1,14 @@
+//   1]. Print number 1 to 100 without using any loop.
 
-//   1]. Print number 1 to 100 without using any loop. 
+let number = 100;
 
-var t=setInterval(printit,0); //this command will execute printit function in the interval off time
-var number=0; 
-function printit(){
-    if(number<=100)
-	{
-		
-console.log(number++);	//each time the function is executed the number is incremented and printed on console log
-	}	
-	else
-	{
-		clearTimeout(t);//this will end the setInterval cycle once the number reached 100
-	}
+function p100(num) {
+  if (num > 0) {
+    p100(num - 1);
+    console.log(num);
+  } else {
+    return;
+  }
 }
+
+p100(number);

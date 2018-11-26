@@ -18,7 +18,7 @@ class students              //variable students that references the function con
     }
     get name()
     {
-        return this.uppername;      //the uppercased name is returned to the name property
+        return 334;      //the uppercased name is returned to the name property
     }
 
     static info(){

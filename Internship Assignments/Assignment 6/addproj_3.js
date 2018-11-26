@@ -1,50 +1,10 @@
 //3. Write a function to assign manager to a project
 
-var mysql = require("mysql2"); //Using mysql database here
-var Sequelize = require("sequelize"); //sequelize
+module.exports={
 
-var con = mysql.createConnection({
-  //Creating a connection with the database
-  host: "localhost",
-  user: "root",
-  password: "bhuvander",
-  port: 3306
-});
-const sequelize = new Sequelize("mydb", "root", "bhuvander", {
-  //Establishing a connection between this file and the database
-  host: "localhost",
-  port: 3306,
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000,
-    handleDisconnects: true
-  },
-  dialect: "mysql"
-});
-
-var test = sequelize
-  .authenticate() // Checking for the connection
-  .then(function() {
-    console.log("CONNECTED! ");
-  })
-  .catch(function(err) {
-    console.log(err);
-  })
-  .done();
-
-ManagerName = "Hari Kumar"; //Inputs given for the function
-Project = "MyProject";
-
-const Projects = sequelize.define("Projects", {
-  projectName: { type: Sequelize.STRING }
-});
-
-const Managers = sequelize.define("Managers", {
-  managerName: { type: Sequelize.STRING }
-});
-Managers.belongsTo(Projects);
-
+  addproj:function (Projects,Managers){
+    ManagerName = "Hari Kumar"; //Inputs given for the function
+Project = "MyProject2";
 Projects.find({ where: { projectName: "TheProject" } }).complete(function(
   err,
   data
@@ -60,3 +20,4 @@ Projects.find({ where: { projectName: "TheProject" } }).complete(function(
     });
   });
 });
+  }}

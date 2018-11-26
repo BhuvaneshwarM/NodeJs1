@@ -8,5 +8,5 @@ console.log(
   "============After replacing all the instance of the word Text============"
 );
 
-console.log(string.replace(/text/g, "sentence")); //here replace will replace the string in the first argument with the second
+console.log(string.replace(/TeXt/ig, "sentence")); //here replace will replace the string in the first argument with the second
 //In order to replace all the instance , the regex g is used , g mans global and will replace all the instances over the string

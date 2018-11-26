@@ -1,1 +1,0 @@
-The functions for API used in this module is stored in the Functions folder

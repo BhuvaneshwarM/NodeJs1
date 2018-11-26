@@ -3,12 +3,7 @@ var jwt = require("jsonwebtoken");
 
 //==============================================UNIT TESTING=======================================
 
-
-var a1 = require(".\\..\\Functions\\api1.js"); // requiring all the functions used in API seperately, for unit testing 
-var a2 = require(".\\..\\Functions\\api2.js");
-var a3 = require(".\\..\\Functions\\api3.js");
-var a4 = require(".\\..\\Functions\\api4.js");
-var a5 = require(".\\..\\Functions\\api5.js");
+var a = require(".\\..\\services");
 
 var ajv = 1;             //ajv testing enabled here by setting this variable to zero
 console.log(
@@ -17,12 +12,12 @@ console.log(
 console.log("\nAJV is normally tested when the code is in main execution");
 
 it("should return array of multiples if entered a number ", function() {  //API for giving multiples being tested
-  var isValid = a3.multiple(5, ajv);//Input data
+  var isValid = a.api3F.multiple(5, ajv);//Input data
   assert.deepEqual(isValid, [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]);  //Output data verification
 });
 
 it("Entering username and password and obtaining the roken ", function() {  //token generation being checked here
-  var isValid = a1.tokengen("Mohit", "secretkey", ajv);
+  var isValid = a.api1F.tokengen("Mohit", "secretkey", ajv);
   assert.deepEqual(
     jwt.verify(isValid, "secretkey", function(err, data) { //Correct key
       if (!err) {
@@ -33,7 +28,7 @@ it("Entering username and password and obtaining the roken ", function() {  //to
     }),
     true
   );
-  var isValid = a1.tokengen("Mohit", "sk", ajv);    //Wrong key
+  var isValid = a.api1F.tokengen("Mohit", "sk", ajv);    //Wrong key
   assert.deepEqual(
     jwt.verify(isValid, "secretkey", function(err, data) {
       if (!err) {
@@ -47,13 +42,13 @@ it("Entering username and password and obtaining the roken ", function() {  //to
 });
 
 it("Entering the toke here should give validation and wrong token will give a mismatch", function() { //Token validation being checked here
-  var isValid = a2.verify(
+  var isValid = a.api2F.verify(
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1vaGl0IiwiaWF0IjoxNTQwODA1NDkxfQ.fyKIwZ1xxHNmKAGEv5y4wrSk1zNVfh-xPELORaiMGTM",
     ajv
   );
   assert.deepEqual(isValid, "Token received and successfully verified!");
 
-  var isValid = a2.verify(
+  var isValid = a.api2F.verify(
     "5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1vaGl0IiwiaWF0IjoxNTQwODA1NDkxfQ.fyKIwZ1xxHNmKAGEv5y4wrSk1zNVfh-xPELORaiMGTM",
     ajv
   );
@@ -61,14 +56,14 @@ it("Entering the toke here should give validation and wrong token will give a mi
 });
 
 it("should take a sentence as input and give alphabetic occurence as object ", function() {  //Api for alphabetic occurence and object of that
-  var isValid = a4.occurence("aabbccddd", ajv);
+  var isValid = a.api4F.occurence("aabbccddd", ajv);
   assert.deepEqual(isValid, { a: 2, b: 2, c: 2, d: 3 });
 });
 
 it("should take number as input and return Amstrong or not amstrong", function() { //API for amstrong number verification being checked
-  var isValid = a5.armstr(371, ajv);
+  var isValid = a.api5F.armstr(371, ajv);
   assert.deepEqual(isValid, "Armstrong number");
-  var isValid = a5.armstr(52, ajv);
+  var isValid = a.api5F.armstr(52, ajv);
   assert.deepEqual(isValid, "Not Armstrong number");
 });
 
